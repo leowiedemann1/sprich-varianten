@@ -1,0 +1,16 @@
+# Sprich – 6 Landingpage-Varianten
+
+Übersicht: https://leowiedemann1.github.io/sprich-varianten/
+
+- **V1 · Ganz simpel** – Sprich 10.000 Wörter im Monat. Wir zahlen dir den Monat zurück.  
+  https://leowiedemann1.github.io/sprich-varianten/v1/
+- **V2 · Speed + Rennen** – Sprechen ist 3× schneller als Tippen.  
+  https://leowiedemann1.github.io/sprich-varianten/v2/
+- **V3 · Challenge** – Die 10.000-Wörter-Challenge.  
+  https://leowiedemann1.github.io/sprich-varianten/v3/
+- **V4 · Tukan** – Lass deine Stimme schreiben.  
+  https://leowiedemann1.github.io/sprich-varianten/v4/
+- **V5 · Schmerzpunkt** – Schluss mit Tippen nach Feierabend.  
+  https://leowiedemann1.github.io/sprich-varianten/v5/
+- **V6 · Privatsphäre** – Deine Worte bleiben auf deinem Mac. Dein Geld kommt zurück.  
+  https://leowiedemann1.github.io/sprich-varianten/v6/
