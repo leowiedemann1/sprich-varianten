@@ -61,11 +61,6 @@
 .vx-hero-long h1.hed { font-size: clamp(36px, 4.4vw, 58px); }
 .vx-lock { color: var(--accent); flex: none; }
 
-/* ── V5: Copy-Button ───────────────────────────────────── */
-.vx-copy { margin-top: 4px; border: 1px solid var(--line-soft); background: var(--paper); color: var(--ink-soft); border-radius: 999px; padding: 6px 14px; font: 500 12px var(--font-jetbrains), monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
-.vx-copy:hover { border-color: var(--accent); color: var(--accent); }
-.vx-copy.is-copied { background: var(--good-soft); color: var(--good); border-color: var(--good); }
-
 /* ── V6: Privatsphäre ──────────────────────────────────── */
 .vx-privacy-list { list-style: none; margin: 22px 0 18px; padding: 0; }
 .vx-privacy-list li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line-soft); font-size: 15px; color: var(--ink-mute); }

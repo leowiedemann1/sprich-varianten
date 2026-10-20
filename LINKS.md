@@ -8,9 +8,9 @@
   https://leowiedemann1.github.io/sprich-varianten/v2/
 - **V3 · Challenge** – Die 10.000-Wörter-Challenge.  
   https://leowiedemann1.github.io/sprich-varianten/v3/
-- **V4 · Tukan** – Lass deine Stimme schreiben. Wir zahlen dir bis zu 3 Monate zurück.  
+- **V4 · Tukan** – Werde 3× produktiver. Wir zahlen dafür.  
   https://leowiedemann1.github.io/sprich-varianten/v4/
-- **V5 · Schmerzpunkt** – Schluss mit Tippen nach Feierabend.  
+- **V5 · Original (Kontrolle)** – Mach Sprechen Teil deines Workflows. Wir zahlen dafür.  
   https://leowiedemann1.github.io/sprich-varianten/v5/
 - **V6 · Privatsphäre** – Deine Worte bleiben auf deinem Mac. Dein Geld kommt zurück.  
   https://leowiedemann1.github.io/sprich-varianten/v6/

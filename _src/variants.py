@@ -5,6 +5,21 @@ bekommt qualifizierte Monatszahlungen erstattet.
 {{CHECKOUT}} wird beim Build durch den UTM-Checkout-Link ersetzt.
 """
 
+import re as _re
+from pathlib import Path as _Path
+
+_ORIG = (_Path(__file__).resolve().parent / "original.html").read_text()
+
+
+def _orig_section(cls):
+    a = _ORIG.index(f'<section class="{cls}"')
+    b = _ORIG.index("</section>", a) + len("</section>")
+    return _re.sub(r'href="/pricing\?plan=monthly&amp;promo=SPRICHEINFACH"', 'href="{{CHECKOUT}}"', _ORIG[a:b])
+
+
+ORIGINAL_HERO = _orig_section("moneyback_hero")
+ORIGINAL_FINAL = _orig_section("moneyback_final")
+
 FINEPRINT = '<p class="moneyback_fineprint">Mit Code <strong class="mono">SPRICHEINFACH</strong> · Pro monatlich</p>'
 FINAL_FINEPRINT = '<p class="moneyback_fineprint">Pro monatlich · Bis zu drei Monatszahlungen zurück bei erfüllten Voraussetzungen</p>'
 
@@ -21,9 +36,8 @@ def final(eyebrow, h2, cta):
     return f'<section class="moneyback_final"><div class="wrap"><p class="kicker moneyback_eyebrow">{eyebrow}</p><h2 class="hed">{h2}</h2><a href="{{{{CHECKOUT}}}}" class="btn btn-accent">{cta}</a>{FINAL_FINEPRINT}</div></section>'
 
 
-def code_box(copy_button=False):
-    btn = '<button type="button" class="vx-copy" data-copy="SPRICHEINFACH">Kopieren</button>' if copy_button else ""
-    return f'<div class="moneyback_receipt-code"><span class="kicker">Dein Code im Checkout</span><strong class="mono">SPRICHEINFACH</strong>{btn}</div>'
+def code_box():
+    return '<div class="moneyback_receipt-code"><span class="kicker">Dein Code im Checkout</span><strong class="mono">SPRICHEINFACH</strong></div>'
 
 
 # ── V1: ganz simpel erklärt ────────────────────────────────────────────────
@@ -78,9 +92,6 @@ V4_RIGHT = """<div class="vx-toucan" aria-hidden="true">
 </video>
 </div>"""
 
-# ── V5: Schmerzpunkt, Original-Card mit Copy-Button ────────────────────────
-V5_RIGHT = f"""<div class="moneyback_receipt"><div class="moneyback_receipt-top"><span class="kicker">Dein Feierabend zahlt sich aus</span><span aria-hidden="true">↗</span></div><p class="moneyback_big-number">Bis zu <strong>3</strong></p><p class="moneyback_receipt-title">Monatszahlungen zurück.</p><div class="moneyback_receipt-rule"></div><div class="moneyback_redemption">{code_box(copy_button=True)}<div class="moneyback_receipt-actions"><a class="btn btn-accent moneyback_redeem" href="{{{{CHECKOUT}}}}">Angebot einlösen</a><p class="moneyback_fineprint moneyback_redeem-note">Monatsabo und Code werden für dich vorausgewählt.</p></div></div></div>"""
-
 # ── V6: Privatsphäre ───────────────────────────────────────────────────────
 V6_RIGHT = f"""<div class="moneyback_receipt vx-privacy">
 <div class="moneyback_receipt-top"><span class="kicker">Wir zählen Wörter. Wir lesen keine Texte.</span><svg class="vx-lock" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
@@ -105,7 +116,7 @@ VARIANTS = {
             left(
                 "Ganz einfach erklärt",
                 "Sprich 10.000 Wörter im Monat.<br/><em>Wir zahlen dir den Monat zurück.</em>",
-                "Du diktierst Mails, Notizen und Ideen, statt sie zu tippen. Schaffst du das Ziel, bekommst du deine Monatszahlung erstattet. Bis zu drei Mal.",
+                "Mit Sprich diktierst du Mails, Notizen und Ideen, statt sie zu tippen. Schaffst du das Ziel, bekommst du deine Monatszahlung erstattet. Bis zu drei Mal.",
                 "Jetzt starten",
             ),
             V1_RIGHT,
@@ -122,12 +133,12 @@ VARIANTS = {
                 "Tippen war gestern",
                 "Sprechen ist 3×&nbsp;schneller.<br/><em>Und bringt dir bis zu 3&nbsp;Monate zurück.</em>",
                 "Teste es selbst im Rennen. Diktier 10.000 Wörter im Monat und wir erstatten dir die Monatszahlung. Bis zu drei Mal.",
-                "3× schneller schreiben",
+                "3× schneller arbeiten",
             ),
             V2_RIGHT,
             extra_cls="vx-hero-long",
         ),
-        final=final("Schneller schreiben beginnt jetzt", "Weniger tippen.<br/><em>Mehr schaffen.</em>", "3× schneller schreiben"),
+        final=final("Schneller schreiben beginnt jetzt", "Weniger tippen.<br/><em>Mehr schaffen.</em>", "3× schneller arbeiten"),
         js=["race.js"],
     ),
     "v3": dict(
@@ -137,7 +148,7 @@ VARIANTS = {
         description="Nimm die 10.000-Wörter-Challenge an: Schaffst du sie, bekommst du die Monatszahlung zurück. Drei Runden, drei Chancen.",
         hero=hero(
             left(
-                "Drei Monate · Drei Runden",
+                "Bis zu 3 Monate einlösbar",
                 "Die 10.000-Wörter-<br/><em>Challenge.</em>",
                 "Diktiere in einem Monat 10.000 Wörter und hol dir die Zahlung für diesen Monat zurück. Jede Runde zählt für sich: drei Runden, drei Chancen.",
                 "Challenge annehmen",
@@ -150,36 +161,27 @@ VARIANTS = {
     "v4": dict(
         name="Tukan",
         hypothesis="Starkes Markenbild + kurze emotionale Headline schlägt erklärende Copy.",
-        title="Lass deine Stimme schreiben. Wir zahlen dir bis zu 3 Monate zurück.",
+        title="Werde 3× produktiver. Wir zahlen dafür.",
         description="Sprich – lokal auf deinem Mac, in jeder App. Diktiere 10.000 Wörter im Monat und hol dir bis zu drei Monatszahlungen zurück.",
         hero=hero(
             left(
                 "Sprich einfach",
-                "Lass deine Stimme schreiben.<br/><em>Wir zahlen dir bis zu 3&nbsp;Monate zurück.</em>",
+                "Werde 3×&nbsp;produktiver.<br/><em>Wir zahlen dafür.</em>",
                 "Sprich diktiert lokal auf deinem Mac, in jeder App. Schaffst du 10.000 Wörter im Monat, erstatten wir dir die Monatszahlung. Bis zu drei Mal.",
                 "Mit Stimme loslegen",
             ),
             V4_RIGHT,
-            extra_cls="vx-hero-toucan vx-hero-long",
+            extra_cls="vx-hero-toucan",
         ),
         final=final("Dein nächster Text beginnt mit deiner Stimme", "Lass deine Stimme<br/><em>schreiben.</em>", "Mit Stimme loslegen"),
     ),
     "v5": dict(
-        name="Schmerzpunkt",
-        hypothesis="Ein konkreter Alltagsschmerz (Mails nach Feierabend) zieht stärker als ein Feature.",
-        title="Schluss mit Tippen nach Feierabend.",
-        description="Die Mails, die liegen bleiben, sprichst du mit Sprich in Minuten weg. Bis zu drei Monatszahlungen zurück.",
-        hero=hero(
-            left(
-                "Für alle, die abends noch Mails tippen",
-                "Schluss mit Tippen<br/><em>nach Feierabend.</em>",
-                "Die Mails, die liegen bleiben, sprichst du in Minuten weg. Und schaffst du 10.000 Wörter im Monat, erstatten wir dir die Monatszahlung. Bis zu drei Mal.",
-                "Angebot einlösen – Code ist schon drin",
-            ),
-            V5_RIGHT,
-        ),
-        final=final("Heute Abend schon weniger tippen", "Feierabend ist<br/><em>Feierabend.</em>", "Angebot einlösen – Code ist schon drin"),
-        js=["copy.js"],
+        name="Original (Kontrolle)",
+        hypothesis="Referenz: Hero der aktuellen Live-Seite, an der sich die anderen Varianten messen.",
+        title="Sprich einfach. Hol dir bis zu 3 Monate zurück.",
+        description="Pro monatlich mit SPRICHEINFACH starten: 10.000 Wörter pro Monat diktieren und die Monatszahlung zurückholen.",
+        hero=ORIGINAL_HERO,
+        final=ORIGINAL_FINAL,
     ),
     "v6": dict(
         name="Privatsphäre",
@@ -190,7 +192,7 @@ VARIANTS = {
             left(
                 "100 % lokal · Made in Germany",
                 "Deine Worte bleiben auf deinem Mac.<br/><em>Dein Geld kommt zurück.</em>",
-                "Sprich erkennt deine Sprache direkt auf deinem Mac, ohne Cloud. Diktier 10.000 Wörter im Monat und hol dir bis zu drei Monatszahlungen zurück.",
+                "Diktier 10.000 Wörter im Monat und hol dir bis zu drei Monatszahlungen zurück.",
                 "Privat diktieren",
             ),
             V6_RIGHT,
