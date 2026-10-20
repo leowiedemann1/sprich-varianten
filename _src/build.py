@@ -81,7 +81,7 @@ PAGES_URL = "https://leowiedemann1.github.io/sprich-varianten"
 
 
 def strip_tags(s):
-    s = s.replace("-<br/>", "-").replace("<br/>", " ")
+    s = s.replace("-<br/>", "-").replace("<br/>", " ").replace("&nbsp;", " ")
     return re.sub(r"<[^>]+>", "", s).strip()
 
 

@@ -115,16 +115,17 @@ VARIANTS = {
     "v2": dict(
         name="Speed + Rennen",
         hypothesis="Ein erlebbarer Geschwindigkeitsvorteil (interaktiv) überzeugt mehr als Geld.",
-        title="Sprechen ist 3× schneller als Tippen.",
+        title="Sprechen ist 3× schneller. Und bringt dir bis zu 3 Monate zurück.",
         description="Sprechen ist rund dreimal schneller als Tippen. Probier Sprich aus und hol dir bis zu drei Monatszahlungen zurück.",
         hero=hero(
             left(
                 "Tippen war gestern",
-                "Sprechen ist<br/><em>3× schneller</em><br/>als Tippen.",
-                "Teste es selbst im Rennen. Und während du schneller schreibst, holst du dir bis zu drei Monatszahlungen zurück: 10.000 diktierte Wörter pro Monat reichen.",
+                "Sprechen ist 3×&nbsp;schneller.<br/><em>Und bringt dir bis zu 3&nbsp;Monate zurück.</em>",
+                "Teste es selbst im Rennen. Diktier 10.000 Wörter im Monat und wir erstatten dir die Monatszahlung. Bis zu drei Mal.",
                 "3× schneller schreiben",
             ),
             V2_RIGHT,
+            extra_cls="vx-hero-long",
         ),
         final=final("Schneller schreiben beginnt jetzt", "Weniger tippen.<br/><em>Mehr schaffen.</em>", "3× schneller schreiben"),
         js=["race.js"],
@@ -149,17 +150,17 @@ VARIANTS = {
     "v4": dict(
         name="Tukan",
         hypothesis="Starkes Markenbild + kurze emotionale Headline schlägt erklärende Copy.",
-        title="Lass deine Stimme schreiben.",
+        title="Lass deine Stimme schreiben. Wir zahlen dir bis zu 3 Monate zurück.",
         description="Sprich – lokal auf deinem Mac, in jeder App. Diktiere 10.000 Wörter im Monat und hol dir bis zu drei Monatszahlungen zurück.",
         hero=hero(
             left(
                 "Sprich einfach",
-                "Lass deine Stimme<br/><em>schreiben.</em>",
-                "Sprich diktiert lokal auf deinem Mac, in jeder App. Diktier 10.000 Wörter im Monat und hol dir bis zu drei Monatszahlungen zurück.",
+                "Lass deine Stimme schreiben.<br/><em>Wir zahlen dir bis zu 3&nbsp;Monate zurück.</em>",
+                "Sprich diktiert lokal auf deinem Mac, in jeder App. Schaffst du 10.000 Wörter im Monat, erstatten wir dir die Monatszahlung. Bis zu drei Mal.",
                 "Mit Stimme loslegen",
             ),
             V4_RIGHT,
-            extra_cls="vx-hero-toucan",
+            extra_cls="vx-hero-toucan vx-hero-long",
         ),
         final=final("Dein nächster Text beginnt mit deiner Stimme", "Lass deine Stimme<br/><em>schreiben.</em>", "Mit Stimme loslegen"),
     ),
